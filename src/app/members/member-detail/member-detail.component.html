@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <h1>{{user?.knownAs}}'s Profile</h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <img src="{{user?.photoUrl}}" alt="{{user?.knownAs}}" class="profile-image thumbnail">
+        <div class="panel-body">
+          <div>
+            <strong>Të Dhëna:</strong>
+            <p>{{user?.emer}} {{user?.mbiemer}}</p>
+          </div>
+          <div>
+            <strong>Mosha:</strong>
+            <p>{{user?.mosha}}</p>
+          </div>
+          <div>
+            <strong>Aktiv së Fundi:</strong>
+            <p>{{user?.lastActive}}</p>
+          </div>
+          <div>
+            <strong>Anëtar që në:</strong>
+            <p>{{user?.created}}</p>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group-justified">
+            <div class="button-group">
+              <button class="btn btn-primary"><i class="fa fa-thumbs-up"> Like</i></button>
+              <button class="btn btn-success">Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+
+    </div>
+  </div>
+</div>
