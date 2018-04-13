@@ -13,24 +13,17 @@ import 'rxjs/add/observable/throw'
 export class UserService {
     baseUrl = environment.apiUrl
 
-constructor(private http: Http) {}
+constructor(private authHttp: AuthHttp) {}
 
 getUsers(): Observable<Users[]>{
-    return this.http.get(this.baseUrl + 'users', this.jwt())
+    return this.authHttp.get(this.baseUrl + 'users')
     .map(response => <Users[]>response.json())
     .catch(this.handleError);
     
 }
-private jwt() {
-    let token = localStorage.getItem('token');
-    if(token){
-        let headers = new Headers({'Authorization': 'Bearer ' + token});
-        headers.append('Content-type', 'application/json');
-        return new RequestOptions({headers: headers});
-    }
-}
+
 getUser(id): Observable<Users>{
-    return this.http
+    return this.authHttp
     .get(this.baseUrl + 'users/' + id)
     .map(response => <Users>response.json())
     .catch(this.handleError);

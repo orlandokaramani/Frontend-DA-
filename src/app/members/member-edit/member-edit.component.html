@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1>Profili i {{user.emer}}'s </h1>
+    <h1>Profili Im </h1>
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -32,24 +32,24 @@
       </div>
     </div>
     <div class="col-sm-8">
-      <div class="tab-panel"><tabset class="member-tabset">
-          <tab heading ="Rreth {{user.emer}}'s">
-            <h4>Përshkrimi</h4>
-            <p>{{user.introduction}}</p>
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading ="Edito të dhënat">
+            <h4>Rreth Meje</h4>
+            <textarea name="prezantimi" id=""  rows="6" class="form-control" [(ngModel)]="user.introduction"></textarea>
             <h4>Interesa</h4>
-            <p>{{user.interests}}</p>
-             </tab>
-             <tab heading ="Photos">
-              <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-               </tab>
-               <tab heading ="Mesazhet">
-                  <p>Mesazhet do jene ketu</p>
-                  </tab>
-  
-          </tabset></div>
+            <textarea name="prezantimi" id=""  rows="6" class="form-control" [(ngModel)]="user.interests"></textarea>
+            <div class="form-inline">
+              <label for="Vendbanimi">Vendbanimi: </label>
+              <input class="fomr-control" type="text"name="vendbanimi" [(ngModel)]="user.">
+            </div>
+          </tab>
+             
+          <tab heading ="Photos">
+          </tab>
+        </tabset>
+      </div>
       
-
-
     </div>
   </div>
 </div>

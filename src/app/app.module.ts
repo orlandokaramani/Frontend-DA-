@@ -1,3 +1,7 @@
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 
 import { MemberCardComponent } from './members/member-card/member-card.component';
@@ -6,7 +10,7 @@ import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -20,6 +24,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoute } from './routes'
 import { UserService } from './_services/User.service';
+import { AuthModule } from './auth/auth.module';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 
 @NgModule({
@@ -32,20 +38,27 @@ import { UserService } from './_services/User.service';
     ListsComponent,
     MessagesComponent,
     MemberCardComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    MemberEditComponent
 ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(appRoute)
+    RouterModule.forRoot(appRoute),
+    AuthModule,
+    TabsModule.forRoot(),
+    NgxGalleryModule
   ],
   providers: [
     AuthGuard,
     AuthService,
     AlertifyService,
     UserService,
+    MemberDetailResolver,
+    MemberListResolver,
+    MemberEditResolver
   ],
   bootstrap: [AppComponent]
 })

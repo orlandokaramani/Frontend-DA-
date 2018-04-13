@@ -12,4 +12,6 @@ export interface Users {
     atesi: string;
     mbiemer: string;
     photos?: Photo[];
+    introduction: string;
+    interests: string;
 }
