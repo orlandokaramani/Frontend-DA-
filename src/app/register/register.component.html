@@ -1,18 +1,47 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" >
+<form [formGroup]="registerForm" (ngSubmit)="register()" >
 
   <h2 class="text-center text-primary">Sign Up</h2>
 
   <hr>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Username" required name="username" [(ngModel)]="model.username">
+    <label class="control-label" style="margin-right:10px">Gjinia: </label>
+    <label class="radio-inline">
+            <input type="radio" value="mashkull" formControlName="gjinia">Mashkull
+          </label>
+    <label class="radio-inline">
+              <input type="radio" value="femer" formControlName="gjinia">Femer
+            </label>
+  </div>
+ 
+
+  <div class="form-group" [ngClass]="{'has-error' : registerForm.get('username').errors && registerForm.get('username').touched}">
+    <input type="text" class="form-control" placeholder="NID" required formControlName="username">
+    
+    <span class="help-block" *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched" >Ju lutemi vendosni Numrin Personal të Identifikimit</span>
   </div>
 
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Password" required name="password"[(ngModel)]="model.password">
+  <div class="form-group" [ngClass]="{'has-error' : registerForm.get('password').errors && registerForm.get('password').touched}">
+    <input type="password" class="form-control" placeholder="Password" required formControlName="password">
+    <span class="help-block" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched" >Ju lutemi vendosni Passwordin</span>
+    <span class="help-block" *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched" >Passwordi duhet të përmbaje të paktën 6 karaktere</span>
+    <span class="help-block" *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched" >Passwordi jo më shumë se 20 karaktere</span>
+    
+  </div>
+  
+  <!-- date of birth -->
+
+  <div class="form-group" [ngClass]="{'has-error': registerForm.get('datelindja').touched && registerForm.get('datelindja').hasError('required')}">
+    <input class="form-control" type="text" bsDatepicker [bsConfig] = "bsConfig" placeholder="Date of Birth" formControlName="datelindja">
+    <span class="help-block" *ngIf="registerForm.get('datelindja').touched && registerForm.get('datelindja').hasError('required')">Ju lutemi vendosni datelindjen</span>
   </div>
 
  <div class="form-group text-center">
-    <button class="btn btn-success" type="submit">Register</button>
+    <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Register</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+    <ng-template #popTemplate><div class=""[innerHtml]="html"></div></ng-template>
+<button type="button" class="btn btn-success"[popover]="popTemplate" >
+  ?
+</button>
+    <img src="" alt="">
   </div>
 </form>

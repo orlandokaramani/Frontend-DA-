@@ -14,4 +14,8 @@ export interface Users {
     photos?: Photo[];
     introduction: string;
     interests: string;
+    idQarku?: number;
+    idBashkia?: number;
+    idNjesia?: number;
+    idQv?: number;
 }

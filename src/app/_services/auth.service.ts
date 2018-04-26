@@ -1,3 +1,4 @@
+import { Users } from './../_models/User';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
@@ -32,8 +33,8 @@ export class AuthService {
 
     }
 
-    register(model: any) {
-        return this.http.post(this.baseUrl + 'register', model, this.requestOptions()).catch(this.handleError);
+    register(user: Users) {
+        return this.http.post(this.baseUrl + 'register', user, this.requestOptions()).catch(this.handleError);
     }
 
     loggedIn(){

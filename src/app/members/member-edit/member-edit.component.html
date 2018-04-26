@@ -1,6 +1,13 @@
 <div class="container">
   <div class="row">
-    <h1>Profili Im </h1>
+    <div class="col-sm-4">
+        <h1>Profili Im </h1>
+    </div>
+<div class="col-sm-8">
+<div class="alert alert-info" [hidden]="!editForm.dirty">
+  <p><strong>Information: </strong>Ju keni kryer ndryshime. Cdo ndryshim i pa ruajtur do humbe!</p>
+</div>
+</div>
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -22,28 +29,61 @@
          
         </div>
         <div class="panel-footer">
-          <div class="btn-group-justified">
+          <button class="btn btn-success btn-block" [disabled]="!editForm.dirty" form="editForm">Ruaj Ndryshimet</button>
+         <!--  <div class="btn-group-justified">
             <div class="button-group">
-              <button class="btn btn-primary"><i class="fa fa-thumbs-up"> Like</i></button>
+              <button class="btn btn-primary">
+                <i class="fa fa-thumbs-up"> Like</i>
+              </button>
               <button class="btn btn-success">Message</button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
+    
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="member-tabset">
           <tab heading ="Edito të dhënat">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()" >
             <h4>Rreth Meje</h4>
             <textarea name="prezantimi" id=""  rows="6" class="form-control" [(ngModel)]="user.introduction"></textarea>
             <h4>Interesa</h4>
-            <textarea name="prezantimi" id=""  rows="6" class="form-control" [(ngModel)]="user.interests"></textarea>
-            <div class="form-inline">
-              <label for="Vendbanimi">Vendbanimi: </label>
-              <input class="fomr-control" type="text"name="vendbanimi" [(ngModel)]="user.">
-            </div>
+            <textarea name="interesa" id=""  rows="6" class="form-control" [(ngModel)]="user.interests"></textarea>
+        
+            <h4>Vendbanimi</h4>
+       
+            <div class="row">
+                <div class="col-sm-8">
+                  
+            <label>Qarku:</label>  
+          <select name="qarku" class="form-control" [(ngModel)]="user.idQarku" (change)="onchangeQarku($event.target.value)">  
+          <option>--Selekto Qarkun--</option>  
+          <option *ngFor="let qarku of qarqet" value={{qarku.id}}>{{qarku.qarku1}}</option>  
+          </select>  
+          
+          <div>  
+              <label>Bashkia:</label>  
+              
+          <select name="bashkia" class="form-control" [(ngModel)]="user.idBashkia" (change)="onChangeBashkite($event.target.value)"> 
+          <option value="0">--Selekto Bashkine--</option>  
+          <option *ngFor="let bashkia of bashkite " value={{bashkia.id}}>{{bashkia.bashkia1}}</option>  
+          </select>  
+          </div> 
+          <div>  
+            <label>Njesia:</label>  
+            <select name="njesia" class="form-control" [(ngModel)]="user.idNjesia">  
+        <option value="0">--Selekto Njesine--</option>  
+        <option *ngFor="let njesia of njesite " value={{njesia.id}}>{{njesia.njesia1}}</option>  
+        </select>  
+        </div>  
+        
+        </div> 
+        </div>
+        </form>
           </tab>
+          
              
           <tab heading ="Photos">
           </tab>

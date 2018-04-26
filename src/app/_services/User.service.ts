@@ -8,6 +8,9 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/observable/throw'
 
+import { Bashkia } from '../_models/Bashkia';
+import { Qv } from '../_models/QV';
+
 
 @Injectable()
 export class UserService {
@@ -27,6 +30,17 @@ getUser(id): Observable<Users>{
     .get(this.baseUrl + 'users/' + id)
     .map(response => <Users>response.json())
     .catch(this.handleError);
+}
+
+GetQv(): Observable<any>{
+    return this.authHttp
+    .get(this.baseUrl + 'qarku')
+    .map(response => response.json())
+    .catch(this.handleError);
+}
+UpdateUser(id: number, user: Users){
+    return this.authHttp.put(this.baseUrl + 'users/' + id, user).catch(this.handleError);
+    
 }
 
 private handleError(error: any) {
